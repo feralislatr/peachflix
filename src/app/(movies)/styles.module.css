@@ -1,0 +1,9 @@
+.page {
+  margin: 2rem;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -1rem auto auto -2rem;
+}
