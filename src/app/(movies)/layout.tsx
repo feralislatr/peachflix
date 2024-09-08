@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './styles.module.css';
 import appStyles from '../page.module.css';
+import SearchBar from '@/components/SearchBar';
 
 export default function MoviesLayout({
   children,
@@ -23,7 +24,7 @@ export default function MoviesLayout({
         </Link>
         <Link href={{ pathname: '/Movies' }}>Movies</Link>
         <Link href={{ pathname: '/favorites' }}>Favorites</Link>
-        <input className={styles.input} type="text" placeholder="Search" />
+        <SearchBar />
       </header>
       {children}
     </div>
