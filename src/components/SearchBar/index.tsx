@@ -2,6 +2,9 @@
 import { useRouter } from 'next/navigation';
 import styles from './styles.module.css';
 
+/** Render Search Bar
+ * Navigate to Search page on Submit
+ */
 export default function SearchBar() {
   const router = useRouter();
 
