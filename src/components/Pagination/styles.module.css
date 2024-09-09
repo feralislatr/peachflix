@@ -1,0 +1,26 @@
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  .button-group {
+    height: 40px;
+    background-color: var(--button-color);
+    border-radius: 8px;
+    & > button {
+      height: 40px;
+      width: 40px;
+      background-color: transparent;
+      color: white;
+      font-weight: 600;
+      border: none;
+      & > .active {
+        height: 32px;
+        width: 32px;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        background-color: var(--button-color-active);
+        border-radius: 50%;
+      }
+    }
+  }
+}

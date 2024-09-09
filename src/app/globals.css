@@ -1,5 +1,8 @@
 :root {
   --background: #252528;
+  --font-inter: 'Inter', sans-serif;
+  --button-color: #3e3e40;
+  --button-color-active: #565659;
 }
 
 html,
@@ -11,7 +14,7 @@ body {
 body {
   color: white;
   background: var(--background);
-  font-family: sans-serif;
+  font-family: var(--font-inter);
 }
 
 * {
