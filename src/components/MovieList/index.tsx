@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { MovieData } from '@/types/MovieData';
 import styles from './styles.module.css';
 
@@ -13,30 +14,38 @@ const posterWidthMap: Record<string, number> = {
   large: 235,
 };
 
-const renderMovieList = (movies: MovieData[], posterWidth: string) => {
-  return movies.map(movie => {
-    if (URL.canParse(movie.Poster)) {
-      return (
-        <Image
-          className={styles['movie-poster']}
-          key={movie.imdbID}
-          src={movie.Poster}
-          alt={movie.Title}
-          height={352}
-          width={posterWidthMap[posterWidth]}
-        />
-      );
-    }
-
+const renderMoviePoster = (movie: MovieData, posterWidth: string) => {
+  if (URL.canParse(movie.Poster)) {
     return (
-      <div key={movie.imdbID} style={{ height: 352, width: posterWidthMap[posterWidth] }}>
-        {movie.Title}
-      </div>
+      <Image
+        className={styles['movie-poster']}
+        key={`movie-poster-${movie.imdbID}`}
+        src={movie.Poster}
+        alt={movie.Title}
+        height={352}
+        width={posterWidthMap[posterWidth]}
+      />
     );
-  });
+  }
+  return (
+    <div
+      key={`movie-poster-${movie.imdbID}`}
+      style={{ height: 352, width: posterWidthMap[posterWidth] }}
+    >
+      {movie.Title}
+    </div>
+  );
 };
 
-/** Render List of Movie Posters; pagination optional */
+const renderMovieList = (movies: MovieData[], posterWidth: string) => {
+  return movies.map(movie => (
+    <Link key={`movie-link-${movie.imdbID}`} href={`/movie/${movie.imdbID}`}>
+      {renderMoviePoster(movie, posterWidth)}
+    </Link>
+  ));
+};
+
+/** Render List of Movie Posters */
 export default function MovieList({ movies, posterWidth = 'large' }: MovieListProps) {
   if (!movies) return null;
 

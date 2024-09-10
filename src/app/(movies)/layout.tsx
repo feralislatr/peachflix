@@ -6,8 +6,10 @@ import SearchBar from '@/components/SearchBar';
 
 export default function MoviesLayout({
   children,
+  movieDetailDialog,
 }: Readonly<{
   children: React.ReactNode;
+  movieDetailDialog: React.ReactNode;
 }>) {
   return (
     <div className={styles.page}>
@@ -26,6 +28,7 @@ export default function MoviesLayout({
         <Link href={{ pathname: '/favorites' }}>Favorites</Link>
         <SearchBar />
       </header>
+      {movieDetailDialog}
       {children}
     </div>
   );

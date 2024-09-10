@@ -12,3 +12,17 @@ export type MovieDataSearchResult = {
   Response: string;
   Error?: string;
 };
+
+export type MovieDetail = {
+  Title: string;
+  Rated: string;
+  Poster: string;
+  Metascore: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Actors: string;
+  Plot: string;
+  Response: string;
+  Error?: string;
+};
