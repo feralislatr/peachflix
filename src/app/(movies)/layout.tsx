@@ -4,13 +4,12 @@ import styles from './styles.module.css';
 import appStyles from '../page.module.css';
 import SearchBar from '@/components/SearchBar';
 
-export default function MoviesLayout({
-  children,
-  movieDetailDialog,
-}: Readonly<{
+type MoviesLayoutProps = Readonly<{
   children: React.ReactNode;
-  movieDetailDialog: React.ReactNode;
-}>) {
+  movieDetailDialog?: React.ReactNode;
+}>;
+
+export default function MoviesLayout({ children, movieDetailDialog }: MoviesLayoutProps) {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
@@ -24,9 +23,11 @@ export default function MoviesLayout({
             priority
           />
         </Link>
-        <Link href={{ pathname: '/Movies' }}>Movies</Link>
-        <Link href={{ pathname: '/favorites' }}>Favorites</Link>
-        <SearchBar />
+        <div className={styles.nav}>
+          <Link href={{ pathname: '/' }}>Movies</Link>
+          <Link href={{ pathname: '/favorites' }}>Favorites</Link>
+          <SearchBar />
+        </div>
       </header>
       {movieDetailDialog}
       {children}

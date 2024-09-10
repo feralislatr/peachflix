@@ -3,7 +3,7 @@ import Pagination from '@/components/Pagination';
 import { MovieDataSearchResult } from '@/types/MovieData';
 import getMovies from '@/utils/get-movies';
 
-type Props = {
+type SearchPageProps = {
   searchParams: {
     s: string;
     page?: string;
@@ -12,7 +12,8 @@ type Props = {
 
 const ERROR_TEXT = 'Could not find Movie. Please try again.';
 
-export default async function SearchPage({ searchParams }: Props) {
+/** Render search results page with pagination */
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const movieResult: MovieDataSearchResult = await getMovies(searchParams);
 
   return (
@@ -21,7 +22,7 @@ export default async function SearchPage({ searchParams }: Props) {
         ERROR_TEXT
       ) : (
         <>
-          Search Results for "{searchParams.s}"
+          <h3>Search Results for "{searchParams.s}"</h3>
           <MovieList movies={movieResult.Search} />
           <Pagination totalResults={Number(movieResult?.totalResults)} />
         </>

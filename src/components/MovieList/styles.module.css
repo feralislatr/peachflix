@@ -2,7 +2,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: 24px 8px;
-  .movie-poster {
+  .movie-poster,
+  .movie-placeholder {
     border-radius: 8px;
+    &:hover {
+      scale: 1.1;
+      transition: 300ms;
+    }
   }
+}
+
+.movie-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }

@@ -17,7 +17,8 @@ export type MovieDetail = {
   Title: string;
   Rated: string;
   Poster: string;
-  Metascore: string;
+  imdbRating: string;
+  imdbID: string;
   Released: string;
   Runtime: string;
   Genre: string;

@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .dialog {
   border: none;
   margin: auto;
@@ -28,13 +29,20 @@
     height: 100%;
     display: block;
     position: absolute;
-    background: linear-gradient(0deg, rgba(37, 37, 40, 0.9) 0%, rgba(37, 37, 40, 0) 90%);
+    background: linear-gradient(
+      0deg,
+      rgba(37, 37, 40, 0.97) 15%,
+      rgba(37, 37, 40, 0.8) 30%,
+      rgba(37, 37, 40, 0.6) 40%,
+      rgba(37, 37, 40, 0.2) 60%
+    );
     border-radius: 24px;
   }
 }
 
 .movie-card {
   display: flex;
+  align-items: flex-end;
   background-size: cover;
   border-radius: 24px;
 }
@@ -43,9 +51,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 25rem;
+  height: fit-content;
   color: white;
-  transform: translateY(75%);
   margin: 4rem;
   padding-right: 4rem;
   z-index: 10;
@@ -71,12 +78,21 @@
       line-height: 19px;
       font-family: var(--font-inter);
       font-weight: 600;
+      &:hover {
+        backdrop-filter: brightness(0.6);
+        cursor: pointer;
+        transition: 250ms;
+      }
     }
 
     .watch {
-      border: solid 2px #fd6e1d;
-      background-color: #fd6e1d;
+      border: solid 2px rgb(253, 110, 29);
+      background-color: rgb(253, 110, 29);
       margin-right: 1rem;
+      &:hover {
+        border-color: rgb(159, 69, 17);
+        background-color: rgb(159, 69, 17);
+      }
     }
     .favorite {
       border: solid 2px white;

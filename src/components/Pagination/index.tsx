@@ -3,8 +3,14 @@ import { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import styles from './styles.module.css';
 
-/** Render Pagination for Search page */
-export default function Pagination({ totalResults }: { totalResults: number }) {
+type PaginationProps = {
+  totalResults: number;
+};
+
+/** Render Pagination for Search page
+ * Handle page navigation and route params on select
+ */
+export default function Pagination({ totalResults }: PaginationProps) {
   const { replace } = useRouter();
 
   // get current params from the path
@@ -47,7 +53,7 @@ export default function Pagination({ totalResults }: { totalResults: number }) {
       <>
         {pageButtons.map(i => (
           <button key={`page-${i}`} onClick={() => handlePageSelect(i)}>
-            <div className={i === page ? styles['active'] : ''}>{i}</div>
+            <div className={i === page ? styles.active : ''}>{i}</div>
           </button>
         ))}
       </>
@@ -56,15 +62,11 @@ export default function Pagination({ totalResults }: { totalResults: number }) {
   return (
     <div className={styles['pagination-container']}>
       <div className={styles['button-group']}>
-        <button
-          className={styles['previous-button']}
-          onClick={handlePrevious}
-          disabled={page === 1}
-        >
+        <button onClick={handlePrevious} disabled={page === 1}>
           {`<`}
         </button>
         {renderPageNos(totalPages <= 6 ? totalPages : 6)}
-        <button className={styles['next-button']} onClick={handleNext}>{`>`}</button>
+        <button onClick={handleNext}>{`>`}</button>
       </div>
       <div>{`${resultCount} of ${totalResults} results`}</div>
     </div>

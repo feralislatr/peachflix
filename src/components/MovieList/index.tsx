@@ -24,15 +24,17 @@ const renderMoviePoster = (movie: MovieData, posterWidth: string) => {
         alt={movie.Title}
         height={352}
         width={posterWidthMap[posterWidth]}
+        priority
       />
     );
   }
   return (
     <div
       key={`movie-poster-${movie.imdbID}`}
+      className={styles['movie-placeholder']}
       style={{ height: 352, width: posterWidthMap[posterWidth] }}
     >
-      {movie.Title}
+      <h4>{movie.Title}</h4>
     </div>
   );
 };

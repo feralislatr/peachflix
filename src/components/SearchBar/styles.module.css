@@ -1,3 +1,9 @@
 .input {
-  width: 159px;
+  width: 15rem;
+  height: 2.5rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 8px;
+  color: white;
 }
