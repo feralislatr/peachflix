@@ -5,16 +5,16 @@ import styles from './styles.module.css';
 
 type MovieListProps = {
   movies: MovieData[];
-  posterWidth?: 'small' | 'large';
+  posterSize?: 'small' | 'large';
   pagination?: boolean;
 };
 
-const posterWidthMap: Record<string, number> = {
-  small: 166,
-  large: 235,
+const posterSizeMap: Record<string, number[]> = {
+  small: [166, 248],
+  large: [235, 352],
 };
 
-const renderMoviePoster = (movie: MovieData, posterWidth: string) => {
+const renderMoviePoster = (movie: MovieData, posterSize: string) => {
   if (URL.canParse(movie.Poster)) {
     return (
       <Image
@@ -22,8 +22,8 @@ const renderMoviePoster = (movie: MovieData, posterWidth: string) => {
         key={`movie-poster-${movie.imdbID}`}
         src={movie.Poster}
         alt={movie.Title}
-        height={352}
-        width={posterWidthMap[posterWidth]}
+        height={posterSizeMap[posterSize][1]}
+        width={posterSizeMap[posterSize][0]}
         priority
       />
     );
@@ -32,26 +32,26 @@ const renderMoviePoster = (movie: MovieData, posterWidth: string) => {
     <div
       key={`movie-poster-${movie.imdbID}`}
       className={styles['movie-placeholder']}
-      style={{ height: 352, width: posterWidthMap[posterWidth] }}
+      style={{ height: 352, width: posterSizeMap[posterSize][0] }}
     >
       <h4>{movie.Title}</h4>
     </div>
   );
 };
 
-const renderMovieList = (movies: MovieData[], posterWidth: string) => {
+const renderMovieList = (movies: MovieData[], posterSize: string) => {
   return movies.map(movie => (
     <Link key={`movie-link-${movie.imdbID}`} href={`/movie/${movie.imdbID}`}>
-      {renderMoviePoster(movie, posterWidth)}
+      {renderMoviePoster(movie, posterSize)}
     </Link>
   ));
 };
 
 /** Render List of Movie Posters */
-export default function MovieList({ movies, posterWidth = 'large' }: MovieListProps) {
+export default function MovieList({ movies, posterSize = 'large' }: MovieListProps) {
   if (!movies) return null;
 
   return (
-    <div className={styles['movie-list-container']}>{renderMovieList(movies, posterWidth)}</div>
+    <div className={styles['movie-list-container']}>{renderMovieList(movies, posterSize)}</div>
   );
 }

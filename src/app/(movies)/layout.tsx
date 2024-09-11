@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './styles.module.css';
 import appStyles from '../page.module.css';
 import SearchBar from '@/components/SearchBar';
+import FavoritesButton from '@/components/FavoritesButton';
 
 type MoviesLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -25,7 +26,7 @@ export default function MoviesLayout({ children, movieDetailDialog }: MoviesLayo
         </Link>
         <div className={styles.nav}>
           <Link href={{ pathname: '/' }}>Movies</Link>
-          <Link href={{ pathname: '/favorites' }}>Favorites</Link>
+          <FavoritesButton />
           <SearchBar />
         </div>
       </header>

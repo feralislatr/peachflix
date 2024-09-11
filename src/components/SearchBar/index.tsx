@@ -1,5 +1,5 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import styles from './styles.module.css';
 
 /** Render Search Bar
@@ -8,6 +8,10 @@ import styles from './styles.module.css';
 export default function SearchBar() {
   const router = useRouter();
   const pathname = usePathname();
+
+  // populate search bar with search params
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
 
   // create search params from search query and navigate on submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,6 +30,7 @@ export default function SearchBar() {
         type="text"
         placeholder="Search"
         name="search"
+        defaultValue={params.get('s') || ''}
       />
     </form>
   );
