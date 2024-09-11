@@ -12,7 +12,9 @@ export default function FavoritesPage() {
   const movieIdList = getFavoriteList();
   const [movieList, setMovieList] = useState<MovieData[]>([]);
   useEffect(() => {
-    Promise.all(movieIdList.map(id => getMovieDetails(id))).then(res => setMovieList(res));
+    Promise.all(movieIdList.map(id => getMovieDetails(id)))
+      .then(res => setMovieList(res))
+      .catch(err => console.log(err));
   }, [movieIdList]);
 
   return (
